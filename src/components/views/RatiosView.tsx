@@ -183,7 +183,6 @@ export function RatiosView() {
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 text-base">1. Razones de Liquidez</h3>
-                <p className="text-xs text-slate-500">Miden la capacidad de pago a corto plazo mediante recursos líquidos</p>
               </div>
             </div>
 
@@ -215,7 +214,6 @@ export function RatiosView() {
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 text-base">2. Razones de Apalancamiento</h3>
-                <p className="text-xs text-slate-500">Miden la proporción de financiamiento de terceros versus fondos propios</p>
               </div>
             </div>
 
@@ -257,7 +255,6 @@ export function RatiosView() {
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 text-base">3. Razones de Actividad / Gerencia</h3>
-                <p className="text-xs text-slate-500">Miden la velocidad de rotación de recursos e inventarios de la empresa</p>
               </div>
             </div>
 
@@ -297,7 +294,6 @@ export function RatiosView() {
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 text-base">4. Razones de Rentabilidad</h3>
-                <p className="text-xs text-slate-500">Miden la rentabilidad global del negocio sobre las ventas y el capital social</p>
               </div>
             </div>
 
@@ -387,7 +383,6 @@ export function RatiosView() {
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 text-base">1. Razones de Liquidez (Extendidas)</h3>
-                <p className="text-xs text-slate-500">Indicadores avanzados de cobertura en efectivo e inversión operativa</p>
               </div>
             </div>
 
@@ -419,7 +414,6 @@ export function RatiosView() {
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 text-base">2. Razones de Apalancamiento (Extendidas)</h3>
-                <p className="text-xs text-slate-500">Estructura detallada del endeudamiento por plazos y capitalización</p>
               </div>
             </div>
 
@@ -479,7 +473,6 @@ export function RatiosView() {
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 text-base">3. Razones de Actividad / Gerencia (Extendidas)</h3>
-                <p className="text-xs text-slate-500">Eficiencia en la rotación de activos fijos e inversión operativa</p>
               </div>
             </div>
 
@@ -511,7 +504,6 @@ export function RatiosView() {
               </div>
               <div>
                 <h3 className="font-bold text-slate-900 text-base">4. Razones de Rentabilidad (Extendidas)</h3>
-                <p className="text-xs text-slate-500">Márgenes de explotación directa previos a gastos administrativos</p>
               </div>
             </div>
 

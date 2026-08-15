@@ -12,7 +12,7 @@ import {
   Edit3,
 } from 'lucide-react';
 
-const TIPOS_SALDO_OPCIONES: { value: TipoSaldo; label: string; grupo: string }[] = [
+const TIPOS_SALDO_OPCIONES: { value: TipoSaldo; label: string; grupo: string; }[] = [
   { value: 'Liquidez', label: 'Liquidez (Caja / Bancos)', grupo: 'Activo Corriente' },
   { value: 'Derecho_Cobro', label: 'Derecho de Cobro (Clientes / CxC)', grupo: 'Activo Corriente' },
   { value: 'Almacen', label: 'Almacén (Inventarios / Existencias)', grupo: 'Activo Corriente' },
@@ -91,7 +91,7 @@ export function AccountsDataView() {
           </div>
           <h2 className="text-2xl font-extrabold text-white">Partidas Contables Actuales</h2>
           <p className="text-xs text-slate-400 max-w-3xl">
-            Modifica cualquier cuenta, tipo de saldo, monto o vida útil. Regla estricta: Solo las cuentas de tipo Inversión con &quot;Terreno&quot; en su descripción tienen vida útil 0 y no se deprecian.
+            Modifica cualquier cuenta, tipo de saldo, monto o vida útil. Solo las cuentas de tipo Inversión con &quot;Terreno&quot; en su descripción tienen vida útil 0 (no se deprecian).
           </p>
         </div>
 

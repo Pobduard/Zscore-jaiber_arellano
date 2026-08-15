@@ -189,15 +189,15 @@ export function DashboardView() {
               </div>
             </div>
 
-            <div className="h-44 w-full">
+            <div className="h-52 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
                     data={pieStructureData}
                     cx="50%"
-                    cy="40%"
-                    innerRadius={35}
-                    outerRadius={55}
+                    cy="35%"
+                    innerRadius={28}
+                    outerRadius={46}
                     paddingAngle={4}
                     dataKey="valor"
                   >
@@ -210,7 +210,12 @@ export function DashboardView() {
                     contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '8px', fontSize: '11px' }}
                     itemStyle={{ color: '#ffffff', fontWeight: '600' }}
                   />
-                  <Legend verticalAlign="bottom" height={32} wrapperStyle={{ fontSize: '9px', fontFamily: 'monospace' }} />
+                  <Legend
+                    layout='vertical'
+                    align="center"
+                    verticalAlign="bottom"
+                    wrapperStyle={{ fontSize: '10px', fontFamily: 'monospace', lineHeight: '18px' }}
+                  />
                 </PieChart>
               </ResponsiveContainer>
             </div>
@@ -223,7 +228,7 @@ export function DashboardView() {
         <div className="flex items-center justify-between border-b border-slate-200 pb-2">
           <div className="flex items-center gap-2 text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">
             <Award className="w-4 h-4 text-emerald-600" />
-            <span>Las 4 Familias de Razones Financieras (Rúbrica de Evaluación)</span>
+            <span>Las 4 Familias de Razones Financieras</span>
           </div>
           <button
             onClick={() => setActiveTab('ratios')}
@@ -368,15 +373,9 @@ export function DashboardView() {
             <Box className="w-4 h-4 text-emerald-600" />
             <span>Diagrama de Cajas Proporcionales (Estructura del Balance)</span>
           </div>
-          <span className="text-[11px] font-mono font-bold bg-slate-900 text-white px-2.5 py-0.5 rounded-md">
-            Treemap Box Diagram
-          </span>
         </div>
 
         <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-xs space-y-3">
-          <p className="text-xs text-slate-500">
-            Representación por áreas rectangulares proporcionales de la Ecuación Contable: Activos vs Pasivos + Patrimonio
-          </p>
 
           <div className="grid grid-cols-2 gap-6 min-h-[280px]">
             {/* Caja Izquierda: ACTIVOS */}

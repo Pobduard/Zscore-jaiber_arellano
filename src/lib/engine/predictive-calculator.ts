@@ -33,7 +33,7 @@ export function calcularModeloPredictivoZ(
   if (valorZ > 1.4) {
     categoriaRiesgo = 'Crédito excelente';
     codigoColor = 'excellent';
-    explicacion = `${valorZ.toFixed(4)} > 1.4. La empresa posee una liquidez circulante sólida e ideal cobertura patrimonial. Riesgo de mora mínimo.`;
+    explicacion = `${valorZ.toFixed(4)} > 1.4. La empresa posee una liquidez circulante sólida e ideal cobertura patrimonial. Riesgo de morosidad mínimo.`;
   } else if (valorZ >= 0.66) {
     categoriaRiesgo = 'Crédito de riesgo normal';
     codigoColor = 'normal';

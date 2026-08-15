@@ -15,14 +15,12 @@ import { useFinancialStore } from '@/store/useFinancialStore';
 import { TabNavegacion } from '@/store/slices/uiSlice';
 
 export function Sidebar() {
-  const {
-    activeTab,
-    setActiveTab,
-    fileName,
-    rawAccounts,
-    setUploadModalOpen,
-    analysisResult,
-  } = useFinancialStore();
+  const activeTab = useFinancialStore((state) => state.activeTab);
+  const setActiveTab = useFinancialStore((state) => state.setActiveTab);
+  const fileName = useFinancialStore((state) => state.fileName);
+  const rawAccounts = useFinancialStore((state) => state.rawAccounts);
+  const setUploadModalOpen = useFinancialStore((state) => state.setUploadModalOpen);
+  const analysisResult = useFinancialStore((state) => state.analysisResult);
 
   const navItems: { id: TabNavegacion; label: string; icon: React.ElementType }[] = [
     { id: 'dashboard', label: 'Resumen General', icon: LayoutDashboard },
@@ -60,10 +58,11 @@ export function Sidebar() {
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-md text-xs font-semibold transition-all duration-150 cursor-pointer ${isActive
+                className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-md text-xs font-semibold cursor-pointer ${
+                  isActive
                     ? 'bg-slate-800 text-white shadow-sm border border-slate-700/80'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
-                  }`}
+                }`}
               >
                 <Icon className={`w-4 h-4 ${isActive ? 'text-emerald-400' : 'text-slate-400'}`} />
                 <span>{item.label}</span>
