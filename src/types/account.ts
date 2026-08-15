@@ -21,10 +21,10 @@ export type TipoSaldo = z.infer<typeof TipoSaldoSchema>;
  * Esquema Zod para validar cada fila cruda ingresada desde el CSV
  */
 export const RawAccountSchema = z.object({
-  id_cuenta: z.coerce.number({ invalid_type_error: 'El ID de cuenta debe ser un número válido' }),
+  id_cuenta: z.coerce.number({ message: 'El ID de cuenta debe ser un número válido' }),
   descripcion_cuenta: z.string().min(1, 'La descripción de la cuenta no puede estar vacía'),
   tipo_saldo: TipoSaldoSchema,
-  monto: z.coerce.number().min(0, 'El monto debe ser un número positivo'),
+  monto: z.coerce.number({ message: 'El monto debe ser un número válido' }).min(0, 'El monto debe ser un número positivo'),
   vida_util_anios: z
     .union([z.coerce.number(), z.string(), z.null(), z.undefined()])
     .transform((val) => {

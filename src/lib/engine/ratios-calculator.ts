@@ -42,7 +42,7 @@ export function calcularRatiosFinancieros(
 
   // Extraer valores clave del Estado de Resultados
   const ventas = estadoResultados.totalVentas;
-  const costoVentas = estadoResultados.costoVentas;
+  const costoVentas = estadoResultados.totalCostoVentas;
   const utilidadBruta = estadoResultados.utilidadBruta;
   const utilidadNeta = estadoResultados.utilidadNeta;
 
