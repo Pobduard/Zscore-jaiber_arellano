@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useFinancialStore } from '@/store/useFinancialStore';
-import { RawAccount, TipoSaldo } from '@/types/account';
+import { RawAccount, TipoSaldo, CATEGORIA_BALANCE } from '@/types/account';
 import { esCuentaTerreno } from '@/lib/engine/account-processor';
 import {
   FileText,
@@ -13,15 +13,15 @@ import {
 } from 'lucide-react';
 
 const TIPOS_SALDO_OPCIONES: { value: TipoSaldo; label: string; grupo: string; }[] = [
-  { value: 'Liquidez', label: 'Liquidez (Caja / Bancos)', grupo: 'Activo Corriente' },
-  { value: 'Derecho_Cobro', label: 'Derecho de Cobro (Clientes / CxC)', grupo: 'Activo Corriente' },
-  { value: 'Almacen', label: 'Almacén (Inventarios / Existencias)', grupo: 'Activo Corriente' },
-  { value: 'Inversion', label: 'Inversión (Maquinaria / Terrenos / Activo Fijo)', grupo: 'Activo No Corriente' },
-  { value: 'Deuda_Corto', label: 'Deuda Corto Plazo (Proveedores / Impuestos)', grupo: 'Pasivo Corriente' },
-  { value: 'Deuda_Largo', label: 'Deuda Largo Plazo (Hipotecas / Prestamos)', grupo: 'Pasivo No Corriente' },
-  { value: 'Propietarios', label: 'Propietarios (Capital Social / Utilidades)', grupo: 'Patrimonio' },
-  { value: 'Ingreso', label: 'Ingreso (Ventas de Software / Productos)', grupo: 'Estado Resultados' },
-  { value: 'Egreso', label: 'Egreso (Costo de Ventas / Gastos Generales)', grupo: 'Estado Resultados' },
+  { value: 'Liquidez', label: 'Liquidez (Caja / Bancos)', grupo: CATEGORIA_BALANCE.ACTIVO_CORRIENTE },
+  { value: 'Derecho_Cobro', label: 'Derecho de Cobro (Clientes / CxC)', grupo: CATEGORIA_BALANCE.ACTIVO_CORRIENTE },
+  { value: 'Almacen', label: 'Almacén (Inventarios / Existencias)', grupo: CATEGORIA_BALANCE.ACTIVO_CORRIENTE },
+  { value: 'Inversion', label: 'Inversión (Maquinaria / Terrenos / Activo Fijo)', grupo: CATEGORIA_BALANCE.ACTIVO_NO_CORRIENTE },
+  { value: 'Deuda_Corto', label: 'Deuda Corto Plazo (Proveedores / Impuestos)', grupo: CATEGORIA_BALANCE.PASIVO_CORRIENTE },
+  { value: 'Deuda_Largo', label: 'Deuda Largo Plazo (Hipotecas / Prestamos)', grupo: CATEGORIA_BALANCE.PASIVO_NO_CORRIENTE },
+  { value: 'Propietarios', label: 'Propietarios (Capital Social / Utilidades)', grupo: CATEGORIA_BALANCE.PATRIMONIO },
+  { value: 'Ingreso', label: 'Ingreso (Ventas de Software / Productos)', grupo: CATEGORIA_BALANCE.ESTADO_RESULTADOS },
+  { value: 'Egreso', label: 'Egreso (Costo de Ventas / Gastos Generales)', grupo: CATEGORIA_BALANCE.ESTADO_RESULTADOS },
 ];
 
 export function AccountsDataView() {

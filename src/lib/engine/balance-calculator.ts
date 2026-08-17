@@ -1,4 +1,4 @@
-import { ProcessedAccount } from '@/types/account';
+import { ProcessedAccount, CATEGORIA_BALANCE } from '@/types/account';
 import { BalanceGeneralStructure } from '@/types/balance';
 
 /**
@@ -33,11 +33,11 @@ export function calcularBalanceGeneral(
   utilidadNeta: number = 0
 ): BalanceGeneralStructure {
   // 1. Filtrar las cuentas pertenecientes a cada categoría del Balance General
-  const activoCorriente = cuentas.filter((c) => c.categoria_balance === 'Activo Corriente');
-  const activoNoCorriente = cuentas.filter((c) => c.categoria_balance === 'Activo No Corriente');
-  const pasivoCorriente = cuentas.filter((c) => c.categoria_balance === 'Pasivo Corriente');
-  const pasivoNoCorriente = cuentas.filter((c) => c.categoria_balance === 'Pasivo No Corriente');
-  const patrimonioBase = cuentas.filter((c) => c.categoria_balance === 'Patrimonio');
+  const activoCorriente = cuentas.filter((c) => c.categoria_balance === CATEGORIA_BALANCE.ACTIVO_CORRIENTE);
+  const activoNoCorriente = cuentas.filter((c) => c.categoria_balance === CATEGORIA_BALANCE.ACTIVO_NO_CORRIENTE);
+  const pasivoCorriente = cuentas.filter((c) => c.categoria_balance === CATEGORIA_BALANCE.PASIVO_CORRIENTE);
+  const pasivoNoCorriente = cuentas.filter((c) => c.categoria_balance === CATEGORIA_BALANCE.PASIVO_NO_CORRIENTE);
+  const patrimonioBase = cuentas.filter((c) => c.categoria_balance === CATEGORIA_BALANCE.PATRIMONIO);
 
   // Si existe Utilidad Neta del Estado de Resultados, se incorpora como asiento de cierre contable en el Patrimonio
   const patrimonio: ProcessedAccount[] = [...patrimonioBase];
@@ -51,7 +51,7 @@ export function calcularBalanceGeneral(
       depreciacion_anual: 0,
       monto_neto: utilidadNeta,
       es_terreno: false,
-      categoria_balance: 'Patrimonio',
+      categoria_balance: CATEGORIA_BALANCE.PATRIMONIO,
     });
   }
 

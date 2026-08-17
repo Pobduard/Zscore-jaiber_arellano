@@ -1,6 +1,7 @@
 'use client';
 
 import { useFinancialStore } from '@/store/useFinancialStore';
+import { CATEGORIA_BALANCE } from '@/types/account';
 import {
   DollarSign,
   TrendingUp,
@@ -42,11 +43,11 @@ export function DashboardView() {
 
   // Datos para gráfico de barras de Estructura Patrimonial
   const structureData = [
-    { name: 'Activo Corriente', monto: balanceGeneral.totalActivoCorriente, fill: '#0f172a' },
-    { name: 'Activo No Corriente', monto: balanceGeneral.totalActivoNoCorriente, fill: '#334155' },
-    { name: 'Pasivo Corriente', monto: balanceGeneral.totalPasivoCorriente, fill: '#f59e0b' },
-    { name: 'Pasivo No Corriente', monto: balanceGeneral.totalPasivoNoCorriente, fill: '#d97706' },
-    { name: 'Patrimonio', monto: balanceGeneral.totalPatrimonio, fill: '#10b981' },
+    { name: CATEGORIA_BALANCE.ACTIVO_CORRIENTE, monto: balanceGeneral.totalActivoCorriente, fill: '#0f172a' },
+    { name: CATEGORIA_BALANCE.ACTIVO_NO_CORRIENTE, monto: balanceGeneral.totalActivoNoCorriente, fill: '#334155' },
+    { name: CATEGORIA_BALANCE.PASIVO_CORRIENTE, monto: balanceGeneral.totalPasivoCorriente, fill: '#f59e0b' },
+    { name: CATEGORIA_BALANCE.PASIVO_NO_CORRIENTE, monto: balanceGeneral.totalPasivoNoCorriente, fill: '#d97706' },
+    { name: CATEGORIA_BALANCE.PATRIMONIO, monto: balanceGeneral.totalPatrimonio, fill: '#10b981' },
   ];
 
   // Datos para Gráfico de Dona: Proporción de Financiamiento y Recursos

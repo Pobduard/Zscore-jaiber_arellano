@@ -37,15 +37,18 @@ export const RawAccountSchema = z.object({
 export type RawAccount = z.infer<typeof RawAccountSchema>;
 
 /**
- * Categoría oficial contable para el Balance o Estado de Resultados
+ * Diccionario centralizado para las Categorías del Balance (Evita strings quemados)
  */
-export type CategoriaBalance =
-  | 'Activo Corriente'
-  | 'Activo No Corriente'
-  | 'Pasivo Corriente'
-  | 'Pasivo No Corriente'
-  | 'Patrimonio'
-  | 'Estado de Resultados';
+export const CATEGORIA_BALANCE = {
+  ACTIVO_CORRIENTE: 'Activo Corriente',
+  ACTIVO_NO_CORRIENTE: 'Activo No Corriente',
+  PASIVO_CORRIENTE: 'Pasivo Corriente',
+  PASIVO_NO_CORRIENTE: 'Pasivo No Corriente',
+  PATRIMONIO: 'Patrimonio',
+  ESTADO_RESULTADOS: 'Estado de Resultados',
+} as const;
+
+export type CategoriaBalance = typeof CATEGORIA_BALANCE[keyof typeof CATEGORIA_BALANCE];
 
 /**
  * Cuenta procesada individual con cálculo de depreciación y monto neto

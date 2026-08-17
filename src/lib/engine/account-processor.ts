@@ -1,4 +1,4 @@
-import { RawAccount, ProcessedAccount, CategoriaBalance } from '@/types/account';
+import { RawAccount, ProcessedAccount, CategoriaBalance, CATEGORIA_BALANCE } from '@/types/account';
 
 /**
  * MOTOR 1: Procesador de Cuentas y Clasificación Contable Dinámica
@@ -25,7 +25,7 @@ export function determinarCategoriaBalance(tipoSaldo: string, descripcion: strin
     /caja|banco|clientes|inventario|cobrar|anticipado/i.test(desc)
   ) {
     if (ts !== 'ingreso' && ts !== 'egreso' && !/ventas|costo|gasto general/i.test(desc)) {
-      return 'Activo Corriente';
+      return CATEGORIA_BALANCE.ACTIVO_CORRIENTE;
     }
   }
 
@@ -36,7 +36,7 @@ export function determinarCategoriaBalance(tipoSaldo: string, descripcion: strin
     /maquinaria|equipo|terreno|edificio|vehiculo|propiedad/i.test(desc)
   ) {
     if (ts !== 'egreso' && ts !== 'ingreso') {
-      return 'Activo No Corriente';
+      return CATEGORIA_BALANCE.ACTIVO_NO_CORRIENTE;
     }
   }
 
@@ -46,7 +46,7 @@ export function determinarCategoriaBalance(tipoSaldo: string, descripcion: strin
     /proveedores|prestamo a 6|impuestos por pagar|cuentas por pagar/i.test(desc)
   ) {
     if (ts !== 'egreso') {
-      return 'Pasivo Corriente';
+      return CATEGORIA_BALANCE.PASIVO_CORRIENTE;
     }
   }
 
@@ -55,7 +55,7 @@ export function determinarCategoriaBalance(tipoSaldo: string, descripcion: strin
     ts === 'pasivo_no_corriente' ||
     /hipoteca|bonos|largo plazo|10 anos|10 años/i.test(desc)
   ) {
-    return 'Pasivo No Corriente';
+    return CATEGORIA_BALANCE.PASIVO_NO_CORRIENTE;
   }
 
   if (
@@ -63,7 +63,7 @@ export function determinarCategoriaBalance(tipoSaldo: string, descripcion: strin
     ts === 'patrimonio' ||
     /capital|utilidades acumuladas|utilidades retenidas|reservas/i.test(desc)
   ) {
-    return 'Patrimonio';
+    return CATEGORIA_BALANCE.PATRIMONIO;
   }
 
   if (
@@ -71,7 +71,7 @@ export function determinarCategoriaBalance(tipoSaldo: string, descripcion: strin
     ts === 'egreso' ||
     /ventas|costo de ventas|gastos|honorarios|servicios/i.test(desc)
   ) {
-    return 'Estado de Resultados';
+    return CATEGORIA_BALANCE.ESTADO_RESULTADOS;
   }
 
   // Fallback seguro por tipo de saldo original
@@ -79,20 +79,20 @@ export function determinarCategoriaBalance(tipoSaldo: string, descripcion: strin
     case 'Liquidez':
     case 'Derecho_Cobro':
     case 'Almacen':
-      return 'Activo Corriente';
+      return CATEGORIA_BALANCE.ACTIVO_CORRIENTE;
     case 'Inversion':
-      return 'Activo No Corriente';
+      return CATEGORIA_BALANCE.ACTIVO_NO_CORRIENTE;
     case 'Deuda_Corto':
-      return 'Pasivo Corriente';
+      return CATEGORIA_BALANCE.PASIVO_CORRIENTE;
     case 'Deuda_Largo':
-      return 'Pasivo No Corriente';
+      return CATEGORIA_BALANCE.PASIVO_NO_CORRIENTE;
     case 'Propietarios':
-      return 'Patrimonio';
+      return CATEGORIA_BALANCE.PATRIMONIO;
     case 'Ingreso':
     case 'Egreso':
-      return 'Estado de Resultados';
+      return CATEGORIA_BALANCE.ESTADO_RESULTADOS;
     default:
-      return 'Activo Corriente';
+      return CATEGORIA_BALANCE.ACTIVO_CORRIENTE;
   }
 }
 

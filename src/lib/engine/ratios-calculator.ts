@@ -46,42 +46,45 @@ export function calcularRatiosFinancieros(
   const utilidadBruta = estadoResultados.utilidadBruta;
   const utilidadNeta = estadoResultados.utilidadNeta;
 
-  // Helper para redondear a 4 decimales
-  const r = (val: number) => (isNaN(val) || !isFinite(val) ? 0 : Math.round(val * 10000) / 10000);
+  // Helper para dividir de forma segura y redondear a 4 decimales
+  const safeDiv = (num: number, den: number) => {
+    return (den === 0 || isNaN(num) || isNaN(den)) ? 0 : Math.round((num / den) * 10000) / 10000;
+  };
 
   // --- 1. RAZONES DE LIQUIDEZ ---
-  const razonCirculante = pc > 0 ? r(ac / pc) : 0;
-  const pruebaAcida = pc > 0 ? r((ac - inventario) / pc) : 0;
-  const pruebaSuperAcida = pc > 0 ? r(cajaBancos / pc) : 0;
-  const capitalDeTrabajoNeto = r(ac - pc);
+  const razonCirculante = safeDiv(ac, pc);
+  const pruebaAcida = safeDiv(ac - inventario, pc);
+  const pruebaSuperAcida = safeDiv(cajaBancos, pc);
+  // El capital de trabajo es una resta, así que solo lo redondeamos directamente
+  const capitalDeTrabajoNeto = Math.round((ac - pc) * 10000) / 10000;
 
   // --- 2. RAZONES DE APALANCAMIENTO ---
-  const razonEndeudamiento = at > 0 ? r(pt / at) : 0;
-  const endeudamientoCortoPlazo = at > 0 ? r(pc / at) : 0;
-  const endeudamientoLargoPlazo = at > 0 ? r(pnc / at) : 0;
-  const apalancamientoInterno = pt > 0 ? r(pat / pt) : 0;
-  const autonomia = at > 0 ? r(pat / at) : 0;
+  const razonEndeudamiento = safeDiv(pt, at);
+  const endeudamientoCortoPlazo = safeDiv(pc, at);
+  const endeudamientoLargoPlazo = safeDiv(pnc, at);
+  const apalancamientoInterno = safeDiv(pat, pt);
+  const autonomia = safeDiv(pat, at);
 
   const totalCapitalizacion = pnc + pat;
-  const capitalizacionExterna = totalCapitalizacion > 0 ? r(pnc / totalCapitalizacion) : 0;
-  const capitalizacionInterna = totalCapitalizacion > 0 ? r(pat / totalCapitalizacion) : 0;
+  const capitalizacionExterna = safeDiv(pnc, totalCapitalizacion);
+  const capitalizacionInterna = safeDiv(pat, totalCapitalizacion);
   const relacionApalancamientoFormato = pt > 0 ? `${(pat / pt).toFixed(2)} : 1` : 'N/A';
 
   // --- 3. RAZONES DE ACTIVIDAD ---
-  const diasInventario = ventas > 0 ? r((inventario * 360) / ventas) : 0;
-  const rotacionInventario = inventario > 0 ? r((costoVentas > 0 ? costoVentas : ventas) / inventario) : 0;
-  const diasCuentasPorCobrar = ventas > 0 ? r((cuentasPorCobrar * 360) / ventas) : 0;
-  const rotacionCuentasPorCobrar = cuentasPorCobrar > 0 ? r(ventas / cuentasPorCobrar) : 0;
-  const rotacionActivoTotal = at > 0 ? r(ventas / at) : 0;
-  const rotacionActivoFijo = anc > 0 ? r(ventas / anc) : 0;
-  const rotacionCapitalDeTrabajo = capitalDeTrabajoNeto > 0 ? r(ventas / capitalDeTrabajoNeto) : 0;
+  const diasInventario = safeDiv(inventario * 360, ventas);
+  const rotacionInventario = safeDiv(costoVentas > 0 ? costoVentas : ventas, inventario);
+  const diasCuentasPorCobrar = safeDiv(cuentasPorCobrar * 360, ventas);
+  const rotacionCuentasPorCobrar = safeDiv(ventas, cuentasPorCobrar);
+  const rotacionActivoTotal = safeDiv(ventas, at);
+  const rotacionActivoFijo = safeDiv(ventas, anc);
+  const rotacionCapitalDeTrabajo = safeDiv(ventas, capitalDeTrabajoNeto);
 
   // --- 4. RAZONES DE RENTABILIDAD & DUPONT ---
-  const margenBruto = ventas > 0 ? r(utilidadBruta / ventas) : 0;
-  const margenNeto = ventas > 0 ? r(utilidadNeta / ventas) : 0;
-  const roe = pat > 0 ? r(utilidadNeta / pat) : 0;
-  const roa = at > 0 ? r(utilidadNeta / at) : 0;
-  const multiplicadorApalancamientoDuPont = pat > 0 ? r(at / pat) : 0;
+  const margenBruto = safeDiv(utilidadBruta, ventas);
+  const margenNeto = safeDiv(utilidadNeta, ventas);
+  const roe = safeDiv(utilidadNeta, pat);
+  const roa = safeDiv(utilidadNeta, at);
+  const multiplicadorApalancamientoDuPont = safeDiv(at, pat);
 
   return {
     liquidez: {
